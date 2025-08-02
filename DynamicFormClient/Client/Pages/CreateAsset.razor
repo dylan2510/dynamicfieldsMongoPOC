@@ -1,0 +1,94 @@
+@page "/create"
+@inject FieldDefinitionService FieldService
+@using DynamicFormClient.Models
+@using DynamicFormClient.Services
+
+
+<h3>Create Asset</h3>
+
+@if (fieldDefinitions == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <EditForm Model="@formModel" OnValidSubmit="@HandleSubmit">
+        <DataAnnotationsValidator />
+        @foreach (var field in fieldDefinitions)
+        {
+            <div class="mb-2">
+                <label>@field.Label</label><br />
+                @RenderInput(field)
+            </div>
+        }
+
+        <button type="submit">Submit</button>
+    </EditForm>
+}
+
+@code {
+    private List<FieldDefinition>? fieldDefinitions;
+    private AssetFormModel formModel = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        fieldDefinitions = await FieldService.GetFieldDefinitionsAsync();
+    }
+
+    private RenderFragment RenderInput(FieldDefinition field) => builder =>
+    {
+        int seq = 0;
+        var fieldKey = field.FieldKey;
+        var value = formModel.Fields.ContainsKey(fieldKey) ? formModel.Fields[fieldKey] : "";
+
+        switch (field.Type)
+        {
+            case "text":
+                builder.OpenElement(seq++, "input");
+                builder.AddAttribute(seq++, "type", "text");
+                builder.AddAttribute(seq++, "value", BindConverter.FormatValue(value));
+                builder.AddAttribute(seq++, "onchange", EventCallback.Factory.CreateBinder<string>(
+                    this, v => formModel.Fields[fieldKey] = v, value?.ToString() ?? ""));
+                builder.CloseElement();
+                break;
+
+            case "number":
+                builder.OpenElement(seq++, "input");
+                builder.AddAttribute(seq++, "type", "number");
+                builder.AddAttribute(seq++, "value", BindConverter.FormatValue(value));
+                builder.AddAttribute(seq++, "onchange", EventCallback.Factory.CreateBinder<string>(
+                    this, v => formModel.Fields[fieldKey] = Convert.ToDouble(v), value?.ToString() ?? ""));
+                builder.CloseElement();
+                break;
+
+            case "select":
+                builder.OpenElement(seq++, "select");
+                builder.AddAttribute(seq++, "onchange", EventCallback.Factory.CreateBinder<string>(
+                    this, v => formModel.Fields[fieldKey] = v, value?.ToString() ?? ""));
+                foreach (var opt in field.Options ?? new())
+                {
+                    builder.OpenElement(seq++, "option");
+                    builder.AddAttribute(seq++, "value", opt);
+                    builder.AddContent(seq++, opt);
+                    builder.CloseElement();
+                }
+                builder.CloseElement();
+                break;
+
+            default:
+                builder.AddContent(seq++, $"Unsupported field type: {field.Type}");
+                break;
+        }
+    };
+
+    private void HandleSubmit()
+    {
+        Console.WriteLine("Form submitted!");
+        foreach (var kv in formModel.Fields)
+        {
+            Console.WriteLine($"{kv.Key} = {kv.Value}");
+        }
+
+        // You can send the formModel to your backend later
+    }
+}

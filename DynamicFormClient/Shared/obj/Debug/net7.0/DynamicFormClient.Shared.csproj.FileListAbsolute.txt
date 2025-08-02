@@ -1,0 +1,11 @@
+/Users/dylan/repo/dylan/dotnet/DynamicFormSolution/DynamicFormClient/Shared/bin/Debug/net7.0/DynamicFormClient.Shared.deps.json
+/Users/dylan/repo/dylan/dotnet/DynamicFormSolution/DynamicFormClient/Shared/bin/Debug/net7.0/DynamicFormClient.Shared.dll
+/Users/dylan/repo/dylan/dotnet/DynamicFormSolution/DynamicFormClient/Shared/bin/Debug/net7.0/DynamicFormClient.Shared.pdb
+/Users/dylan/repo/dylan/dotnet/DynamicFormSolution/DynamicFormClient/Shared/obj/Debug/net7.0/DynamicFormClient.Shared.GeneratedMSBuildEditorConfig.editorconfig
+/Users/dylan/repo/dylan/dotnet/DynamicFormSolution/DynamicFormClient/Shared/obj/Debug/net7.0/DynamicFormClient.Shared.AssemblyInfoInputs.cache
+/Users/dylan/repo/dylan/dotnet/DynamicFormSolution/DynamicFormClient/Shared/obj/Debug/net7.0/DynamicFormClient.Shared.AssemblyInfo.cs
+/Users/dylan/repo/dylan/dotnet/DynamicFormSolution/DynamicFormClient/Shared/obj/Debug/net7.0/DynamicFormClient.Shared.csproj.CoreCompileInputs.cache
+/Users/dylan/repo/dylan/dotnet/DynamicFormSolution/DynamicFormClient/Shared/obj/Debug/net7.0/DynamicFormClient.Shared.dll
+/Users/dylan/repo/dylan/dotnet/DynamicFormSolution/DynamicFormClient/Shared/obj/Debug/net7.0/refint/DynamicFormClient.Shared.dll
+/Users/dylan/repo/dylan/dotnet/DynamicFormSolution/DynamicFormClient/Shared/obj/Debug/net7.0/DynamicFormClient.Shared.pdb
+/Users/dylan/repo/dylan/dotnet/DynamicFormSolution/DynamicFormClient/Shared/obj/Debug/net7.0/ref/DynamicFormClient.Shared.dll
