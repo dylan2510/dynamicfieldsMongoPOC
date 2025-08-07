@@ -9,7 +9,8 @@ http://localhost:5297/swagger
 # Run the Blazor client
 cd DynamicFormClient/Client
 dotnet run
-http://localhost:5239/create
+http://localhost:5239/fieldbuilder -> Create your fields here
+http://localhost:5239/create -> You see the form with the fields appear here.
 
 If you are using different url and port for blazor app, update the CORS in server app - program.cs
 builder.Services.AddCors(options =>

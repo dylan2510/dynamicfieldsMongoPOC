@@ -1,0 +1,74 @@
+@page "/fieldbuilder"
+@using DynamicFormClient.Models
+@using DynamicFormClient.Services
+@inject FieldDefinitionService FieldService
+
+<h3>Create New Field Definition</h3>
+
+<EditForm Model="@field" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="mb-2">
+        <label>Field Key</label><br />
+        <InputText @bind-Value="field.FieldKey" class="form-control" />
+    </div>
+
+    <div class="mb-2">
+        <label>Label</label><br />
+        <InputText @bind-Value="field.Label" class="form-control" />
+    </div>
+
+    <div class="mb-2">
+        <label>Type</label><br />
+        <InputSelect @bind-Value="field.Type" class="form-control">
+            <option value="text">Text</option>
+            <option value="number">Number</option>
+            <option value="select">Select</option>
+        </InputSelect>
+    </div>
+
+    @if (field.Type == "select")
+    {
+        <div class="mb-2">
+            <label>Options (comma-separated)</label><br />
+            <InputText @bind-Value="optionsInput" class="form-control" />
+        </div>
+    }
+
+    <div class="mb-2">
+        <InputCheckbox @bind-Value="field.Required" />
+        <label class="ms-2">Required</label>
+    </div>
+
+    <div class="mb-2">
+        <label>Section</label><br />
+        <InputText @bind-Value="field.Section" class="form-control" />
+    </div>
+
+    <button class="btn btn-primary" type="submit">Create Field</button>
+
+    @if (success)
+    {
+        <p class="text-success mt-2">Field created successfully.</p>
+    }
+</EditForm>
+
+@code {
+    private FieldDefinition field = new();
+    private string? optionsInput;
+    private bool success = false;
+
+    private async Task HandleValidSubmit()
+    {
+        if (field.Type == "select" && !string.IsNullOrWhiteSpace(optionsInput))
+        {
+            field.Options = optionsInput.Split(',').Select(o => o.Trim()).ToList();
+        }
+
+        await FieldService.CreateFieldDefinitionAsync(field);
+        field = new(); // reset form
+        optionsInput = null;
+        success = true;
+    }
+}
