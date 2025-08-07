@@ -1,5 +1,6 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using System.Text.Json.Serialization;
 
 namespace DynamicFormApi.Models;
 
@@ -7,13 +8,24 @@ public class FieldDefinition
 {
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
-    public string Id { get; set; }
+    [JsonIgnore] // optional: don't send ID from client
+    public string? Id { get; set; }
+    
+    [JsonPropertyName("fieldKey")]
+    public string FieldKey { get; set; }
 
-    public string FieldKey { get; set; }      // e.g. "Color"
-    public string Label { get; set; }         // e.g. "Asset Color"
-    public string Type { get; set; }          // e.g. "text", "number", "select"
-    public bool Required { get; set; } = false;
+    [JsonPropertyName("label")]
+    public string Label { get; set; }
 
-    public string Section { get; set; }       // e.g. "Specifications"
-    public List<string>? Options { get; set; } // for dropdown/select
+    [JsonPropertyName("type")]
+    public string Type { get; set; }
+
+    [JsonPropertyName("required")]
+    public bool Required { get; set; }
+
+    [JsonPropertyName("section")]
+    public string? Section { get; set; }
+
+    [JsonPropertyName("options")]
+    public List<string>? Options { get; set; }
 }

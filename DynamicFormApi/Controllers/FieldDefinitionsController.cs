@@ -22,8 +22,19 @@ public class FieldDefinitionsController : ControllerBase
 
     // POST: api/FieldDefinitions
     [HttpPost]
-    public async Task<IActionResult> Post(FieldDefinition field)
+    public async Task<IActionResult> Post([FromBody] FieldDefinition field)
     {
+        if (!ModelState.IsValid)
+        {
+            var errors = string.Join("; ", ModelState.Values
+                .SelectMany(x => x.Errors)
+                .Select(x => x.ErrorMessage));
+
+            Console.WriteLine($"[Model Error] {errors}");
+            return BadRequest(ModelState);
+        }
+
+        Console.WriteLine($"[API] Received field: {field.FieldKey}");
         await _repository.CreateAsync(field);
         return Ok();
     }

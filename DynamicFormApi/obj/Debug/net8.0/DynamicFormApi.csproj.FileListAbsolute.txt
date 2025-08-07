@@ -23,6 +23,7 @@
 /Users/dylan/repo/dylan/dotnet/DynamicFormSolution/DynamicFormApi/obj/Debug/net8.0/DynamicFormApi.csproj.CoreCompileInputs.cache
 /Users/dylan/repo/dylan/dotnet/DynamicFormSolution/DynamicFormApi/obj/Debug/net8.0/DynamicFormApi.MvcApplicationPartsAssemblyInfo.cs
 /Users/dylan/repo/dylan/dotnet/DynamicFormSolution/DynamicFormApi/obj/Debug/net8.0/DynamicFormApi.MvcApplicationPartsAssemblyInfo.cache
+/Users/dylan/repo/dylan/dotnet/DynamicFormSolution/DynamicFormApi/obj/Debug/net8.0/DynamicFormApi.sourcelink.json
 /Users/dylan/repo/dylan/dotnet/DynamicFormSolution/DynamicFormApi/obj/Debug/net8.0/staticwebassets.build.json
 /Users/dylan/repo/dylan/dotnet/DynamicFormSolution/DynamicFormApi/obj/Debug/net8.0/staticwebassets.development.json
 /Users/dylan/repo/dylan/dotnet/DynamicFormSolution/DynamicFormApi/obj/Debug/net8.0/staticwebassets/msbuild.DynamicFormApi.Microsoft.AspNetCore.StaticWebAssets.props
